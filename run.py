@@ -70,7 +70,7 @@ val_data_gen = train_image_generator.flow_from_directory(batch_size=BATCH_SIZE,
 # getting MobileNet
 URL = "https://tfhub.dev/google/tf2-preview/mobilenet_v2/feature_vector/4"
 mobile_net = hub.KerasLayer(URL, input_shape=(IMG_SHAPE, IMG_SHAPE, 3))
-hub.LatestModuleExporter
+
 mobile_net.trainable = False
 
 model = tf.keras.models.Sequential([
@@ -105,7 +105,7 @@ val_loss = history.history['val_loss']
 
 epochs_range = range(EPOCHS)
 
-model.save('./')
+tfjs.converters.save_keras_model(model, './')
 
 # plt.figure(figsize=(8, 8))
 # plt.subplot(1, 2, 1)
